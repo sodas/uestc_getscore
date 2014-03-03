@@ -1,20 +1,14 @@
 #encoding: utf-8
-"""
-Copyright (C) 2011 Chen Yukang <moorekang@gmail.com>
-is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
- """
-
 import urllib,urllib2,cookielib,webbrowser
+
 
 #配置信息
 class uestc:
-    ID = "学号"
-    password = "密码"
+    print 'input your student ID'
+    ID = raw_input()
+    print 'input your password'
+    password = raw_input()
     login_path = "https://uis.uestc.edu.cn/amserver/UI/Login?goto=http%3A%2F%2Fportal.uestc.edu.cn%2Flogin.portal"
-
     def __init__(self):
         self.cj = cookielib.LWPCookieJar()
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj))
@@ -33,8 +27,8 @@ class uestc:
         html = self.opener.open(request).read()
         get_url = self.opener.open(request).geturl()
         if get_url == 'http://portal.uestc.edu.cn/index.portal':
-            print get_url
-            self.cj.save('uestc.cookie')
+            #print get_url
+            #self.cj.save('uestc.cookie')
             print 'Login success !'
             
             path='http://eams.uestc.edu.cn/eams/teach/grade/course/person.action'
